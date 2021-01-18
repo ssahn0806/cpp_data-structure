@@ -1,4 +1,8 @@
 #include <cstdlib>
+#include <iomanip>
+#include <iostream>
+
+using namespace std;
 
 template <class Item>
 class binary_tree_node
@@ -75,6 +79,16 @@ bool bst_remove(binary_tree_node<Item>*& root_ptr, const Item& target)
 	}
 }
 
+template <class Item>
+void bst_print(const binary_tree_node<Item>* root_ptr, size_t depth)
+{
+	if (root_ptr != NULL)
+	{
+		bst_print(root_ptr->right(), depth + 1);
+		std::cout << setw(4 * depth) << "" << root_ptr->data() << endl;
+		bst_print(root_ptr->left(), depth + 1);
+	}
+}
 template <class Item>
 bool bst_remove_max(binary_tree_node<Item>*& root_ptr, Item& removed)
 {
